@@ -1,35 +1,38 @@
 import { Component, For } from "solid-js";
 
+
+const randomize = ()=> Math.floor(Math.random() * 500)
+
 const trends = [
   {
     category: "Sports",
     content: "Some team won something!",
-    glideCount: 300,
+    glideCount: randomize(),
   },
   {
     category: "Finance",
     content: "Bitcoin down again!",
-    glideCount: 200,
+    glideCount: randomize(),
   },
   {
     category: "Pc and Games",
     content: "New Eincode game out!",
-    glideCount: 500,
+    glideCount: randomize(),
   },
   {
     category: "Economy",
     content: "It's goin well...",
-    glideCount: 300,
+    glideCount: randomize(),
   },
   {
     category: "Celebrities",
     content: "Some useless news!",
-    glideCount: 300,
+    glideCount: randomize()
   },
   {
     category: "Movies",
     content: "Peter Jackson",
-    glideCount: 1000,
+    glideCount: randomize(),
   },
 ];
 
@@ -55,54 +58,7 @@ const TrendsSideBar: Component = () => {
   }
 
 </For>
-      {/* {trends.map((items, i) => {
-        return (
-          <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-            <div class="flex-it">
-              <span class="text-gray-400 text-sm">{items.category}</span>
-              <span class="text-lg font-bold">{items.content}</span>
-              <span class="text-gray-400 text-sm">
-                {items.glideCount} glides
-              </span>
-            </div>
-          </div>
-        );
-      })} */}
-      {/* <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-        <div class="flex-it">
-          <span class="text-gray-400 text-sm">Trends in Europe</span>
-          <span class="text-lg font-bold">Sports</span>
-          <span class="text-gray-400 text-sm">10 000 glides</span>
-        </div>
-      </div>
-      <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-        <div class="flex-it">
-          <span class="text-gray-400 text-sm">Trends in Europe</span>
-          <span class="text-lg font-bold">Sports</span>
-          <span class="text-gray-400 text-sm">10 000 glides</span>
-        </div>
-      </div>
-      <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-        <div class="flex-it">
-          <span class="text-gray-400 text-sm">Trends in Europe</span>
-          <span class="text-lg font-bold">Sports</span>
-          <span class="text-gray-400 text-sm">10 000 glides</span>
-        </div>
-      </div>
-      <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-        <div class="flex-it">
-          <span class="text-gray-400 text-sm">Trends in Europe</span>
-          <span class="text-lg font-bold">Sports</span>
-          <span class="text-gray-400 text-sm">10 000 glides</span>
-        </div>
-      </div>
-      <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-        <div class="flex-it">
-          <span class="text-gray-400 text-sm">Trends in Europe</span>
-          <span class="text-lg font-bold">Sports</span>
-          <span class="text-gray-400 text-sm">10 000 glides</span>
-        </div>
-      </div> */}
+     
     </div>
   );
 };
