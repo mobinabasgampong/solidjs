@@ -1,12 +1,8 @@
-import { Component } from "solid-js";
-import {CgProfile, CgMoreO} from "solid-icons/cg"
-import { IoNotificationsCircleOutline} from "solid-icons/io"
-import {RiMapCompassDiscoverLine} from "solid-icons/ri"
-import {AiOutlineHome} from "solid-icons/ai"
-import {FiMoreHorizontal} from "solid-icons/fi"
-
-
-
+import { Component, For } from "solid-js";
+import { A } from "@solidjs/router";
+import { FiMoreHorizontal } from "solid-icons/fi";
+import { links } from "./links";
+import Popup from "../utils/Popup";
 const MainSideBar: Component = () => {
   return (
     <header class="lg:flex-grow flex-it items-end">
@@ -21,56 +17,21 @@ const MainSideBar: Component = () => {
               </div>
               <div class="my-1 w-full flex-it">
                 <nav class="flex-it items-start">
-                  <a class="flex-it items-start flex-grow w-full" href="#">
-                    <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
-                      <div class="flex-it">
-                        <AiOutlineHome size={24} />
-                      </div>
-                      <div class="mx-4 text-2xl truncate xl:block hidden">
-                        <span class="truncate">Home</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="flex-it items-start flex-grow w-full" href="#">
-                    <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
-                      <div class="flex-it">
-                        <CgProfile size={24} />
-                      </div>
-                      <div class="mx-4 text-2xl truncate xl:block hidden">
-                        <span class="truncate">Profile</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="flex-it items-start flex-grow w-full" href="#">
-                    <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
-                      <div class="flex-it">
-                        <CgMoreO size={24} />
-                      </div>
-                      <div class="mx-4 text-2xl truncate xl:block hidden">
-                        <span class="truncate">More</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="flex-it items-start flex-grow w-full" href="#">
-                    <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
-                      <div class="flex-it">
-                        <IoNotificationsCircleOutline size={24} />
-                      </div>
-                      <div class="mx-4 text-2xl truncate xl:block hidden">
-                        <span class="truncate">Notification</span>
-                      </div>
-                    </div>
-                  </a>
-                  <a class="flex-it items-start flex-grow w-full" href="#">
-                    <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
-                      <div class="flex-it">
-                        <RiMapCompassDiscoverLine size={24} />
-                      </div>
-                      <div class="mx-4 text-2xl truncate xl:block hidden">
-                        <span class="truncate">Discover</span>
-                      </div>
-                    </div>
-                  </a>
+                  <For each={links}>
+                    {(items) => (
+                      <A
+                        class="flex-it items-start flex-grow w-full"
+                        href={items.href}
+                      >
+                        <div class="p-3 flex-row justify-center items-center flex-it rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200">
+                          <div class="flex-it">{items.icon}</div>
+                          <div class="mx-4 text-2xl truncate xl:block hidden">
+                            <span class="truncate">{items.name}</span>
+                          </div>
+                        </div>
+                      </A>
+                    )}
+                  </For>
                 </nav>
               </div>
               {/* GLIDER SEND-MESSAGE BUTTON */}
@@ -83,24 +44,29 @@ const MainSideBar: Component = () => {
               </div>
             </div>
             {/* PROFILE MENU */}
-            <div class="flex-it my-3 hover:cursor-pointer">
+            <div class="flex-it hover:cursor-pointer">
               {/* POPUP START*/}
-              <div class="flex-it items-center flex-row p-3 rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200 cursor-pointer">
-                <div class="flex-it">
-                  <div class="w-10 h-10 overflow-visible">
-                    <img
-                      class="rounded-full"
-                      src="https://www.pinclipart.com/picdir/middle/133-1331433_free-user-avatar-icons-happy-flat-design-png.png"
-                    ></img>
+              <Popup
+                opener={() => (
+                  <div class="my-20 flex-it items-center flex-row p-3 rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200 cursor-pointer">
+                    <div class="flex-it">
+                      <div class="w-10 h-10 overflow-visible">
+                        <img
+                          class="rounded-full"
+                          src="https://www.pinclipart.com/picdir/middle/133-1331433_free-user-avatar-icons-happy-flat-design-png.png"
+                        ></img>
+                      </div>
+                    </div>
+                    <div class="flex-it xl:flex hidden flex-grow flex-row justify-between items-center">
+                      <div class="flex-it mx-3 font-bold">Filip99</div>
+                      <div class="flex-it">
+                        <FiMoreHorizontal />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="flex-it xl:flex hidden flex-grow flex-row justify-between items-center">
-                  <div class="flex-it mx-3 font-bold">Filip99</div>
-                  <div class="flex-it">
-                    <FiMoreHorizontal />
-                  </div>
-                </div>
-              </div>
+                )}
+              />
+
               {/* POPUP END */}
             </div>
           </div>

@@ -1,7 +1,6 @@
 import { Component, For } from "solid-js";
 
-
-const randomize = ()=> Math.floor(Math.random() * 500)
+const randomize = () => Math.floor(Math.random() * 500);
 
 const trends = [
   {
@@ -27,7 +26,7 @@ const trends = [
   {
     category: "Celebrities",
     content: "Some useless news!",
-    glideCount: randomize()
+    glideCount: randomize(),
   },
   {
     category: "Movies",
@@ -43,22 +42,19 @@ const TrendsSideBar: Component = () => {
         <span class="text-xl font-bold">Trends</span>
       </div>
 
-<For each={trends}>
-  {
-    (items)=> 
-    <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
-    <div class="flex-it">
-      <span class="text-gray-400 text-sm">{items.category}</span>
-      <span class="text-lg font-bold">{items.content}</span>
-      <span class="text-gray-400 text-sm">
-        {items.glideCount} glides
-      </span>
-    </div>
-  </div>
-  }
-
-</For>
-     
+      <For each={trends}>
+        {(items) => (
+          <div class="flex-it p-4 cursor-pointer transition duration-200 hover:bg-gray-700">
+            <div class="flex-it">
+              <span class="text-gray-400 text-sm">{items.category}</span>
+              <span class="text-lg font-bold">{items.content}</span>
+              <span class="text-gray-400 text-sm">
+                {items.glideCount} glides
+              </span>
+            </div>
+          </div>
+        )}
+      </For>
     </div>
   );
 };
