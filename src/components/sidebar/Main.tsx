@@ -48,7 +48,7 @@ const MainSideBar: Component = () => {
               {/* POPUP START*/}
               <Popup
                 opener={() => (
-                  <div class="my-20 flex-it items-center flex-row p-3 rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200 cursor-pointer">
+                  <div class="my-3 flex-it items-center flex-row p-3 rounded-3xl hover:bg-gray-800 hover:rounded-3xl transition duration-200 cursor-pointer">
                     <div class="flex-it">
                       <div class="w-10 h-10 overflow-visible">
                         <img

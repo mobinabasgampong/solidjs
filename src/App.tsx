@@ -8,6 +8,7 @@ const App: Component = () => {
   console.log("Initial load");
   return (
     <>
+      <div id="popups" />
       <Routes>
         <Route path={"/"} component={HomeScreen} />
         <Route path={"/login"} component={LoginScreen} />
