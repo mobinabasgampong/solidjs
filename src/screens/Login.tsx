@@ -1,5 +1,6 @@
-import { Component } from "solid-js";
+import { Component, onMount } from "solid-js";
 import { A } from "@solidjs/router";
+
 const LoginScreen: Component = () => {
   return (
     <div class="flex-it justify-center items-center h-full">

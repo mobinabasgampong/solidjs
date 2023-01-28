@@ -1,4 +1,11 @@
-import { Component, createSignal, createUniqueId, For } from "solid-js";
+import {
+  Component,
+  createSignal,
+  createUniqueId,
+  For,
+  onCleanup,
+  onMount,
+} from "solid-js";
 
 import { FaRegularImage, FaRegularHeart } from "solid-icons/fa";
 
@@ -6,10 +13,16 @@ import MainLayout from "../components/layout/Main";
 
 import GlidePost from "../components/glides/GlidePost";
 import { Glide } from "../types/Glide";
+import { useAuthState } from "../context/auth";
 
 const HomeScreen: Component = () => {
   const [content, setContent] = createSignal("");
   const [glides, setGlides] = createSignal<Glide[]>([]);
+
+  const authState = useAuthState();
+
+  console.log("From context : ", authState?.loading);
+  console.log("From context iauth: ", authState?.isAuthenticated);
 
   const createGlide = () => {
     const glide = {
@@ -35,7 +48,12 @@ const HomeScreen: Component = () => {
     // console.log(JSON.stringify(glides()));
   };
 
-  console.log("Initial load");
+  onMount(() => {
+    console.log("On mount");
+  });
+  onCleanup(() => {
+    console.log("On cleaned up");
+  });
   return (
     <MainLayout>
       {/* HOME PAGE START */}

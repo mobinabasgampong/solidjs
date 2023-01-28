@@ -7,6 +7,7 @@ import {
   Show,
 } from "solid-js";
 import { Portal } from "solid-js/web";
+import pageSize from "../../reactive/pageSize";
 
 type Props = {
   opener: Component;
@@ -18,25 +19,25 @@ const Popup: Component<Props> = ({ opener: Opener }) => {
   let popup: HTMLDivElement;
 
   onMount(() => {
-    window.addEventListener("resize", adjustPopup);
     window.addEventListener("click", closePopup);
   });
 
   onCleanup(() => {
-    window.removeEventListener("resize", adjustPopup);
     window.removeEventListener("click", closePopup);
   });
 
   createEffect(() => {
-    if (isOpen()) {
+    if (isOpen() && pageSize.value()) {
       adjustPopup();
     }
   });
 
   const adjustPopup = () => {
-    const position = followTo.getBoundingClientRect();
-    popup.style.left = position.left + "px";
-    popup.style.bottom = followTo.clientHeight + "px";
+    if (!!popup) {
+      const position = followTo.getBoundingClientRect();
+      popup.style.left = position.left + "px";
+      popup.style.bottom = followTo.clientHeight + "px";
+    }
     // console.log("Adjusted!");
     // console.log(followTo);
     // console.log(popup);
@@ -51,7 +52,7 @@ const Popup: Component<Props> = ({ opener: Opener }) => {
 
   const isPopupClicked = (e: MouseEvent) => {
     console.log("isPopupClicked", popup.contains(e.target as Node));
-    return popup.contains(e.target as Node);
+    return popup?.contains(e.target as Node);
   };
 
   return (

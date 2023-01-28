@@ -5,7 +5,7 @@ const LoginScreen = lazy(() => import("./screens/Login"));
 const RegisterScreen = lazy(() => import("./screens/Register"));
 
 const App: Component = () => {
-  console.log("Initial load");
+  //console.log("Initial load");
   return (
     <>
       <div id="popups" />
