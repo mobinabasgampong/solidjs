@@ -1,8 +1,26 @@
-import { Component } from "solid-js";
+import { Component, createEffect, onMount } from "solid-js";
 import { A } from "@solidjs/router";
+import { GliderInputEvent, RegisterForm } from "../types/Forms";
+import { createStore } from "solid-js/store";
+import useForm from "../hooks/useForm";
 const RegisterScreen: Component = () => {
+  const { handleInput, submitForm } = useForm({
+    fullName: "",
+    nickName: "",
+    email: "",
+    avatar: "",
+    password: "",
+    passwordConfirmation: "",
+  });
+
+  const onFormSubmit = (form: RegisterForm) => {
+    const { fullName } = form;
+    console.log("Onsubmit Register ", form);
+  };
+
   return (
     <div class="flex-it justify-center items-center h-full">
+      {/* <div class="text-white">{JSON.stringify()}</div> */}
       <div class="text-white text-4xl font-bold">Glider - Create Account</div>
       <div class="mt-10 flex-it h-100 xs:w-100 w-full bg-white p-10 rounded-2xl">
         <div class="flex-it">
@@ -18,6 +36,7 @@ const RegisterScreen: Component = () => {
                       type="text"
                       name="fullName"
                       id="fullName"
+                      onInput={handleInput}
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                     <div class="flex-it grow text-xs bg-red-400 text-white p-3 pl-3 mt-1 rounded-md">
@@ -32,6 +51,7 @@ const RegisterScreen: Component = () => {
                     <input
                       type="text"
                       name="nickName"
+                      onInput={handleInput}
                       id="nickName"
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -43,6 +63,7 @@ const RegisterScreen: Component = () => {
                     </label>
                     <input
                       type="text"
+                      onInput={handleInput}
                       name="email"
                       id="email"
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -55,6 +76,7 @@ const RegisterScreen: Component = () => {
                     </label>
                     <input
                       type="text"
+                      onInput={handleInput}
                       name="avatar"
                       id="avatar"
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -67,6 +89,7 @@ const RegisterScreen: Component = () => {
                     </label>
                     <input
                       type="password"
+                      onInput={handleInput}
                       name="password"
                       id="password"
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -79,6 +102,7 @@ const RegisterScreen: Component = () => {
                     </label>
                     <input
                       type="password"
+                      onInput={handleInput}
                       name="passwordConfirmation"
                       id="passwordConfirmation"
                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -95,6 +119,8 @@ const RegisterScreen: Component = () => {
               <div class="flex-it py-2">
                 <button
                   type="button"
+                  //onclick={submitForm(onFormSubmit)}
+                  onclick={() => submitForm(onFormSubmit)}
                   class="
                   bg-blue-400 hover:bg-blue-500 focus:ring-0
                   disabled:cursor-not-allowed disabled:bg-gray-400

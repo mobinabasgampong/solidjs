@@ -1,15 +1,14 @@
 import {
-  Accessor,
   createContext,
-  createSignal,
-  onCleanup,
   onMount,
   ParentComponent,
+  Show,
   useContext,
 } from "solid-js";
-
 import { createStore } from "solid-js/store";
-type AuthStateContextValue = {
+import Loader from "../components/utils/Loader";
+
+type AuthStateContextValues = {
   isAuthenticated: boolean;
   loading: boolean;
 };
@@ -19,20 +18,37 @@ const initialState = () => ({
   loading: true,
 });
 
-const AuthStateContext = createContext<AuthStateContextValue>();
+const AuthStateContext = createContext<AuthStateContextValues>();
 
 const AuthProvider: ParentComponent = (props) => {
   const [store, setStore] = createStore(initialState());
-  onMount(() => {
-    console.log("Auth Context MOUNTED");
+
+  onMount(async () => {
+    try {
+      await authenticateUser();
+      setStore("isAuthenticated", true);
+    } catch (error: any) {
+      console.log(error);
+      setStore("isAuthenticated", false);
+    } finally {
+      setStore("loading", false);
+    }
   });
-  onCleanup(() => {
-    console.log("Auth Context CLEANED UP");
-  });
+
+  const authenticateUser = async () => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        //res(true);
+        rej("Ooopsie we got some problem here");
+      }, 1000);
+    });
+  };
 
   return (
     <AuthStateContext.Provider value={store}>
-      {props.children}
+      <Show when={store.loading} fallback={props.children}>
+        <Loader size={100} />
+      </Show>
     </AuthStateContext.Provider>
   );
 };

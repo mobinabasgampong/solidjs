@@ -24,7 +24,7 @@ export const links = [
   },
   {
     name: "Login",
-    href: "/login",
+    href: "/auth/login",
     // name: "Notification",
     // href: "/notification",
     icon: () => <IoNotificationsCircleOutline size={SIZE} />,
